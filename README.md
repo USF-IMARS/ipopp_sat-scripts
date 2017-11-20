@@ -29,4 +29,7 @@ A rough status of the port is below:
         * :white_check_mark: PngGenerator.py
 * :hourglass: [seadas SPA](https://github.com/USF-IMARS/seadas_spa/tree/port)
     * :hourglass: modis_oc
-    
+        * :white_check_mark: DayNight.sh
+            * :hourglass: ncdump_hdf
+            * :hourglass: h5dump
+        * :hourglass: l2gen
