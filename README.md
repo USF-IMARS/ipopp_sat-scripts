@@ -1,7 +1,9 @@
 # sat-scripts
 port of IMaRS IPOPP stations with human-readable documentation
 
-Files are currently being ported in from each of our IPOPP SPAs following [this guide](https://github.com/USF-IMARS/IPOPP-docs/blob/master/docs/understanding-an-algorithm.md).
+Scripts are currently being ported in from each of our IPOPP SPAs following [this guide](https://github.com/USF-IMARS/IPOPP-docs/blob/master/docs/understanding-an-algorithm.md).
+
+Usage of these scripts as wrapped by IPOPP in the SPA should be ported to the relevant airflow dag at [imars_dags](https://github.com/USF-IMARS/imars_dags).
 
 Each SPA repo that is being ported should have a git branch called `port`. 
 This branch is used to track the status of the port.
