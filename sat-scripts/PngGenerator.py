@@ -1,4 +1,16 @@
 #!/usr/bin/python
+"""
+    I'm not exactly sure what this module does, but I am guessing that it cuts
+    png files out of a "imars.%.modis.oc.mapped" product.
+
+    Ported from [IMaRS IPOPP SPA](https://github.com/USF-IMARS/imars)
+        * SPA=imars
+        * station=oc_png station [cfgfile](https://github.com/USF-IMARS/imars/blob/master/station/oc_png/station.cfgfile)
+        * algorithm=cut_mapped_pass
+            * [generic.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/generic.xml)
+            * [installation.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/installation.xml)
+"""
+
 import sys
 import os
 import getopt
@@ -8,7 +20,6 @@ import numpy as np
 import png
 import itertools
 import math
-
 
 class PngGenerator:
     filename = ""
