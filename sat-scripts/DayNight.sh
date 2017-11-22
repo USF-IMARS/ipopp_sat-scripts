@@ -19,7 +19,12 @@
 #     * algorithm=DayNight
 #         * [generic.xml](https://github.com/USF-IMARS/seadas_spa/blob/port/wrapper/oc/generic.xml)
 #         * [installation.xml](https://github.com/USF-IMARS/seadas_spa/blob/port/wrapper/oc/installation.xml)
+
 FIL1KM=$1
+
+# TODO: these should probably be set up w/ alternatives so you can just do ncdump_hdf
+H4DUMP="/opt/ocssw/run/bin3/linux_64/ncdump_hdf"
+H5DUMP="/opt/ocssw/run/bin3/linux/h5dump"
 
 set -e
 # set -o verbose  # for debugging help
@@ -30,9 +35,9 @@ echo ft: $file_type
 # if hdf4
 if [ `echo ${file_type} | grep 'Hierarchical Data Format (version 4) data'` ]
 then
-	DAY_FLAG=`${MODIS_DB_HOME}/run/bin3/linux/ncdump_hdf -h ${FIL1KM} | grep "Day"`
+	DAY_FLAG=`$H4DUMP -h ${FIL1KM} | grep "Day"`
 else  # assume it's hdf5
-	DAY_FLAG=`${MODIS_DB_HOME}/run/bin3/linux/h5dump -a /Data_Products/VIIRS-MOD-GEO-TC/VIIRS-MOD-GEO-TC_Gran_0/N_Day_Night_Flag ${FIL1KM} | grep  \"Day\"`
+	DAY_FLAG=`$H5DUMP -a /Data_Products/VIIRS-MOD-GEO-TC/VIIRS-MOD-GEO-TC_Gran_0/N_Day_Night_Flag ${FIL1KM} | grep  \"Day\"`
 fi
 
 echo df: $DAY_FLAG
@@ -44,4 +49,4 @@ else
    LIGHT="NIGHT"
 fi
 
-echo "DayNightCheck = $LIGHT" > DayNightCheck.txt
+echo "DayNightCheck = $LIGHT" #> DayNightCheck.txt
