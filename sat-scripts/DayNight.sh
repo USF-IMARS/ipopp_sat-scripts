@@ -57,7 +57,7 @@ echo light: $LIGHT
 echo "DayNightCheck = $LIGHT" #> DayNightCheck.txt
 
 if [ $LIGHT == "DAY" ]; then
-	return 0;
+	exit 0;
 else
-	return 1;
+	exit 3;  # night exit code
 fi
