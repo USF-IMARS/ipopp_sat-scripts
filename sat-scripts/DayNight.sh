@@ -23,8 +23,12 @@
 FIL1KM=$1
 
 # TODO: these should probably be set up w/ alternatives so you can just do ncdump_hdf
-H4DUMP="/opt/ocssw/run/bin3/linux_64/ncdump_hdf"
-H5DUMP="/opt/ocssw/run/bin3/linux/h5dump"
+# ocssw v ???
+#H4DUMP="/opt/ocssw/run/bin3/linux_64/ncdump_hdf"
+#H5DUMP="/opt/ocssw/run/bin3/linux/h5dump"
+# ocssw v ??? (newer?)
+H4DUMP="/opt/ocssw/opt/bin/ncdump_hdf"
+H5DUMP="/opt/ocssw/opt/bin/h5dump"
 
 set -e
 # set -o verbose  # for debugging help
