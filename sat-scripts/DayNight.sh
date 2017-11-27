@@ -38,18 +38,20 @@ echo ft: $file_type
 
 # if hdf4
 if [[ $file_type == *"Hierarchical Data Format (version 4) data"* ]]; then
-	DAY_FLAG=`$H4DUMP -h ${FIL1KM} | grep "Day"`
+	file_meta=`$H4DUMP -h ${FIL1KM}`
+	if [[ $file_meta == *"Day"* ]]; then
+		LIGHT="DAY"
+	else
+		LIGHT="NIGHT"
+	fi
 else  # assume it's hdf5
-	DAY_FLAG=`$H5DUMP -a /Data_Products/VIIRS-MOD-GEO-TC/VIIRS-MOD-GEO-TC_Gran_0/N_Day_Night_Flag ${FIL1KM} | grep  \"Day\"`
+	file_meta=`$H5DUMP -a /Data_Products/VIIRS-MOD-GEO-TC/VIIRS-MOD-GEO-TC_Gran_0/N_Day_Night_Flag ${FIL1KM}`
+	if [[ $file_meta == *"Day"* ]]; then
+		LIGHT="DAY"
+	else
+		LIGHT="NIGHT"
+	fi
 fi
 
-echo df: $DAY_FLAG
-
-if [ -n "$DAY_FLAG" ]
-then
-   LIGHT="DAY"
-else
-   LIGHT="NIGHT"
-fi
-
+echo light: $LIGHT
 echo "DayNightCheck = $LIGHT" #> DayNightCheck.txt
