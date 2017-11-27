@@ -33,12 +33,11 @@ H5DUMP="/opt/ocssw/opt/bin/h5dump"
 set -e
 # set -o verbose  # for debugging help
 
-file_type=`file ${FIL1KM}`
+file_type=`file -b ${FIL1KM}`
 echo ft: $file_type
 
 # if hdf4
-if [ `echo ${file_type} | grep 'Hierarchical Data Format (version 4) data'` ]
-then
+if [[ $file_type == *"Hierarchical Data Format (version 4) data"* ]]; then
 	DAY_FLAG=`$H4DUMP -h ${FIL1KM} | grep "Day"`
 else  # assume it's hdf5
 	DAY_FLAG=`$H5DUMP -a /Data_Products/VIIRS-MOD-GEO-TC/VIIRS-MOD-GEO-TC_Gran_0/N_Day_Night_Flag ${FIL1KM} | grep  \"Day\"`
