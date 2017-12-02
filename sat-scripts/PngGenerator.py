@@ -1,14 +1,21 @@
 #!/usr/bin/python
 """
-    I'm not exactly sure what this module does, but I am guessing that it cuts
-    png files out of a "imars.%.modis.oc.mapped" product.
+I'm not exactly sure what this module does, but I am guessing that it cuts
+png files out of a "imars.%.modis.oc.mapped" product.
 
-    Ported from [IMaRS IPOPP SPA](https://github.com/USF-IMARS/imars)
-        * SPA=imars
-        * station=oc_png station [cfgfile](https://github.com/USF-IMARS/imars/blob/master/station/oc_png/station.cfgfile)
-        * algorithm=cut_mapped_pass
-            * [generic.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/generic.xml)
-            * [installation.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/installation.xml)
+Ported from [IMaRS IPOPP SPA](https://github.com/USF-IMARS/imars)
+    * SPA=imars
+    * station=oc_png station [cfgfile](https://github.com/USF-IMARS/imars/blob/master/station/oc_png/station.cfgfile)
+    * algorithm=cut_mapped_pass
+        * [generic.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/generic.xml)
+        * [installation.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/installation.xml)
+
+Required python modules:
+    numpy | `pip install numpy`
+    h5py  | `yum install h5py`
+    pyhdf | `pip install python-hdf4` [ref](https://github.com/fhs/python-hdf4))
+
+
 """
 
 import sys
