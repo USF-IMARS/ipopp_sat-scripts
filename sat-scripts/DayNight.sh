@@ -27,8 +27,8 @@ FIL1KM=$1
 #H4DUMP="/opt/ocssw/run/bin3/linux_64/ncdump_hdf"
 #H5DUMP="/opt/ocssw/run/bin3/linux/h5dump"
 # ocssw v ??? (newer?)
-H4DUMP="/opt/ocssw/run/bin/linux_64/ncdump_hdf"
-H5DUMP="/opt/ocssw/run/bin/linux_64/h5dump"
+H4DUMP="/opt/ocssw/run/bin3/linux_64/ncdump_hdf"
+H5DUMP="/opt/ocssw/run/bin3/linux_64/h5dump"
 
 set -e
 # set -o verbose  # for debugging help
