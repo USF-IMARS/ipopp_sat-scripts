@@ -15,24 +15,47 @@ chlor_a
 """
 from argparse import ArgumentParser
 
-import matplotlib
-matplotlib.use('Agg')  # fixes "no display name and no $DISPLAY environment variable"
-import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('Agg')  # fixes "no display name and no $DISPLAY environment variable"
+# import matplotlib.pyplot as plt
+import png
+try:
+    from itertools import imap  # py2
+except ImportError:
+    imap=map  # py3
+import math
 import netCDF4
 import numpy as np
 
 def main(args):
     nc = netCDF4.Dataset(args.in_path)
-    # plt.imshow(nc.variables[args.var_name])
-    # plt.savefig(args.out_path, bbox_inches=0)
     data = np.array(nc.variables[args.var_name])
     data = eval("np.around(" + args.transform + ")")
-    plt.imsave(
-        args.out_path, data, format='png'
-        # vmin=0,
-        # vmax=254
-        # cmap=plt.get_cmap("Greens")
-    )
+    # === w/ imshow
+    # plt.imshow(data)
+    # plt.savefig(args.out_path, bbox_inches=0)
+    # === w/ imsave
+    # plt.imsave(
+    #     args.out_path, data, format='png'
+    #     # vmin=0,
+    #     # vmax=254
+    #     # cmap=plt.get_cmap("Greens")
+    # )
+    # === w/ png
+    mask_png = png.Reader(filename="./masks/chlor_a_gcoos_mask.png")
+    column_count, row_count, mask, meta = mask_png.read()
+    palette = mask_png.palette()
+    image_2d = np.vstack(imap(np.uint16, mask))
+    for i in range(data.shape[0]):
+        for j in range(data.shape[1]):
+            if (image_2d[i, j] > 251 or
+                    data[i, j] <= 0 or
+                    np.isnan(data[i, j]) or
+                    math.isnan(data[i, j])):
+                data[i, j] = image_2d[i, j]
+    with open(args.out_path, 'wb') as output:
+        writer = png.Writer(data.shape[1], data.shape[0], palette=palette)
+        writer.write(output, data)
 
 if __name__ == "__main__":
     parser = ArgumentParser(description='output png from netCDF4 file')
