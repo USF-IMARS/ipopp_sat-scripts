@@ -2,6 +2,8 @@
 #
 # writes "DAY" or "NIGHT" to DayNightCheck.txt based on given geo_file.
 #
+# Requires ocssw to be installed at /opt/ocssw
+#
 # Parameters:
 # ------------------
 # geo_file : mxd03 file path like M{Y,O}D03.17234044500.hdf

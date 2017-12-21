@@ -10,12 +10,10 @@ Ported from [IMaRS IPOPP SPA](https://github.com/USF-IMARS/imars)
         * [generic.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/generic.xml)
         * [installation.xml](https://github.com/USF-IMARS/imars/blob/master/wrapper/cut_mapped_pass/installation.xml)
 
-Required python modules:
+Requires python modules:
     numpy | `pip install numpy`
     h5py  | `yum install h5py`
     pyhdf | `pip install python-hdf4` [ref](https://github.com/fhs/python-hdf4))
-
-
 """
 
 import sys

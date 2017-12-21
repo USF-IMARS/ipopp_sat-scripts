@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
-creates a png from a given netCDF4 file & variable name
+creates a png from a given netCDF4 file & variable name.
+
+requires matplotlib & netCDF4.
 """
 from argparse import ArgumentParser
 
