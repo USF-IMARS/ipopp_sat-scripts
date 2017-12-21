@@ -19,12 +19,20 @@ import matplotlib
 matplotlib.use('Agg')  # fixes "no display name and no $DISPLAY environment variable"
 import matplotlib.pyplot as plt
 import netCDF4
+import numpy as np
 
 def main(args):
     nc = netCDF4.Dataset(args.in_path)
     # plt.imshow(nc.variables[args.var_name])
     # plt.savefig(args.out_path, bbox_inches=0)
-    plt.imsave(args.out_path, nc.variables[args.var_name])
+    data = np.array(nc.variables[args.var_name])
+    data = eval("np.around(" + args.transform + ")")
+    plt.imsave(
+        args.out_path, data, format='png'
+        # vmin=0,
+        # vmax=254
+        # cmap=plt.get_cmap("Greens")
+    )
 
 if __name__ == "__main__":
     parser = ArgumentParser(description='output png from netCDF4 file')
@@ -36,5 +44,9 @@ if __name__ == "__main__":
     parser.add_argument("in_path",  help="netCDF4 file path input")
     parser.add_argument("out_path", help="path of png to output")
     parser.add_argument("var_name", help="name of variable to output from netCDF4 file")
+    parser.add_argument(
+        "-t", "--transform", default="data",
+        help="Transform to apply to data before export. Example: 'np.log10(data+1)/0.00519'"
+    )
     args = parser.parse_args()
     main(args)
