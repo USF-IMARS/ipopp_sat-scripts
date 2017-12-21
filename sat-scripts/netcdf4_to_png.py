@@ -5,6 +5,13 @@ creates a png from a given netCDF4 file & variable name.
 requires matplotlib & netCDF4 (& tkinter)
 `pip3 intstall matplotlib netcdf4`
 `yum install python34-tkinter`  # from epel
+
+example usage:
+-------------
+./sat-scripts/netcdf4_to_png.py \
+/srv/imars-objects/modis_aqua_gom/l3/2017-12-17T12:00:00Z_l3.nc \
+test_chlor_a.png \
+chlor_a
 """
 from argparse import ArgumentParser
 
@@ -15,8 +22,9 @@ import netCDF4
 
 def main(args):
     nc = netCDF4.Dataset(args.in_path)
-    plt.imshow(nc.variables[args.var_name])
-    plt.savefig(args.out_path, bbox_inches=0)
+    # plt.imshow(nc.variables[args.var_name])
+    # plt.savefig(args.out_path, bbox_inches=0)
+    plt.imsave(args.out_path, nc.variables[args.var_name])
 
 if __name__ == "__main__":
     parser = ArgumentParser(description='output png from netCDF4 file')
