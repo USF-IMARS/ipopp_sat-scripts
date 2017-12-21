@@ -2,10 +2,14 @@
 """
 creates a png from a given netCDF4 file & variable name.
 
-requires matplotlib & netCDF4.
+requires matplotlib & netCDF4 (& tkinter)
+`pip3 intstall matplotlib netcdf4`
+`yum install python34-tkinter`  # from epel
 """
 from argparse import ArgumentParser
 
+import matplotlib
+matplotlib.use('Agg')  # fixes "no display name and no $DISPLAY environment variable"
 import matplotlib.pyplot as plt
 import netCDF4
 
