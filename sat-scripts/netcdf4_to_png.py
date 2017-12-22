@@ -28,10 +28,10 @@ def main(args):
     data = np.array(nc.variables[args.var_name])
     data = eval("np.around(" + args.transform + ")")
     plt.imsave(
-        args.out_path, data, format='png'
-        # vmin=0,
-        # vmax=254
-        # cmap=plt.get_cmap("Greens")
+        args.out_path, data, format='png',
+        vmin=0,
+        vmax=255,
+        cmap=plt.get_cmap("nipy_spectral")
     )
 
 if __name__ == "__main__":
