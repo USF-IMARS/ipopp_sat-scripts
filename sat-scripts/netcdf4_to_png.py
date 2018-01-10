@@ -25,7 +25,12 @@ def main(args):
     nc = netCDF4.Dataset(args.in_path)
     # plt.imshow(nc.variables[args.var_name])
     # plt.savefig(args.out_path, bbox_inches=0)
-    data = np.array(nc.variables[args.var_name])
+    try:
+        data = np.array(nc.variables[args.var_name])
+    except KeyError as k_err:
+        raise KeyError('variable not found in netcdf4 file "' + args.var_name + 
+                       '"\n\t variables available: ' + str(nc.variables)
+        )
     data = eval("np.around(" + args.transform + ")")
     plt.imsave(
         args.out_path, data, format='png',
