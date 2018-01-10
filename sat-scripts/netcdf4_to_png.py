@@ -29,7 +29,7 @@ def main(args):
         data = np.array(nc.variables[args.var_name])
     except KeyError as k_err:
         raise KeyError('variable not found in netcdf4 file "' + args.var_name + 
-                       '"\n\t variables available: ' + str(nc.variables)
+                       '". Variables available: ' + str(list(nc.variables))
         )
     data = eval("np.around(" + args.transform + ")")
     plt.imsave(
