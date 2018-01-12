@@ -33,7 +33,7 @@ def main(args):
         )
     data = eval("np.around(" + args.transform + ")")
     plt.imsave(
-        args.out_path, data, format='png',
+        args.out_path, data, format=args.out_format,
         vmin=0,
         vmax=255,
         cmap=plt.get_cmap("nipy_spectral")
@@ -52,6 +52,10 @@ if __name__ == "__main__":
     parser.add_argument(
         "-t", "--transform", default="data",
         help="Transform to apply to data before export. Example: 'np.log10(data+1)/0.00519'"
+    )
+    parser.add_argument(
+        "-f", "--out_format", default="png",
+        help="File format of output image. Must be format supported by matplotlib imsave (png, pdf, ps, eps, svg, tiff(?))."
     )
     args = parser.parse_args()
     main(args)
