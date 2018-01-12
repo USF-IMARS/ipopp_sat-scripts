@@ -33,7 +33,7 @@ def main(args):
         )
     data = eval("np.around(" + args.transform + ")")
     plt.imsave(
-        args.out_path, data, format=args.out_format,
+        args.out_path, data,
         vmin=0,
         vmax=255,
         cmap=plt.get_cmap("nipy_spectral")
@@ -47,15 +47,11 @@ if __name__ == "__main__":
                         default=0
     )
     parser.add_argument("in_path",  help="netCDF4 file path input")
-    parser.add_argument("out_path", help="path of png to output")
+    parser.add_argument("out_path", help="path to output file, including file extension for desired output format.")
     parser.add_argument("var_name", help="name of variable to output from netCDF4 file")
     parser.add_argument(
         "-t", "--transform", default="data",
         help="Transform to apply to data before export. Example: 'np.log10(data+1)/0.00519'"
-    )
-    parser.add_argument(
-        "-f", "--out_format", default="png",
-        help="File format of output image. Must be format supported by matplotlib imsave (png, pdf, ps, eps, svg, tiff(?))."
     )
     args = parser.parse_args()
     main(args)
