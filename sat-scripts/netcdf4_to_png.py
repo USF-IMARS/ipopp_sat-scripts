@@ -36,7 +36,7 @@ def main(args):
         args.out_path, data,
         vmin=0,
         vmax=255,
-        cmap=plt.get_cmap("nipy_spectral")
+        cmap=plt.get_cmap(args.cmap)
     )
 
 if __name__ == "__main__":
@@ -49,6 +49,7 @@ if __name__ == "__main__":
     parser.add_argument("in_path",  help="netCDF4 file path input")
     parser.add_argument("out_path", help="path to output file, including file extension for desired output format.")
     parser.add_argument("var_name", help="name of variable to output from netCDF4 file")
+    parser.add_argument("-c", "--cmap", default="nipy_spectral", help="matplotlib colormap to use")
     parser.add_argument(
         "-t", "--transform", default="data",
         help="Transform to apply to data before export. Example: 'np.log10(data+1)/0.00519'"
